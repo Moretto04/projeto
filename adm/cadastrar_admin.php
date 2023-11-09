@@ -59,14 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </script>
 </head>
 <body>
-<h2>Cadastrar Produto</h2>
+<h2>Cadastrar Usuário</h2>
 <form action="" method="post" enctype="multipart/form-data">
     <!-- Campos do formulário para inserir informações do produto -->
     <label for="nome">Nome:</label>
     <input type="text" name="nome" id="nome" required>
     <p>
-    <label for="descricao">Email:</label>
-    <textarea name="email" id="email" required></textarea>
+    <label for="email">Email:</label>
+    <input name="email" id="email" required></input>
     <p>
     <label for="preco">Senha:</label>
     <input type="text" name="senha" id="senha" required>
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="avatar" id="avatar">
     </div>
     <p>
-    <button type="submit">Cadastrar Produto</button>
+    <button type="submit">Cadastrar Usuário</button>
 </form>
 </body>
 </html>
