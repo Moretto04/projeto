@@ -36,6 +36,7 @@ try {
     <div id="logo"><img src="../visual/charlie-logo.png" style="width: 20%;" alt=""></div>
     <table  class="table table-hover table-striped-columns">
         <tr>
+            <th>IMAGEM</th>
             <th>ID</th> 
             <th>NOME</th> 
             <th>EMAIL</th>
