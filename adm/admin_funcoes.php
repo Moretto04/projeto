@@ -22,7 +22,7 @@
                 <button id="button_insert_prod"  class="btn btn-dark btn2">CADASTRAR ADMIN</button>
             </a>
 
-            <a href="#">
+            <a href="listar_admin.php">
                 <button id="button_list_prod" class="btn btn-dark btn2">LISTAR ADMIN</button>
             </a>
         
