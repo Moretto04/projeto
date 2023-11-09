@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="avatar" id="avatar">
     </div>
     <p>
-    <button type="submit">Cadastrar Usuário</button>
+    <button type="submit">CADASTRAR</button>
 </form>
 </body>
 </html>
