@@ -1,14 +1,3 @@
-<?php
-
-session_start();
-
-if(!isset($_SESSION['admin_logado'])){
-    header("location:login.php");
-    exit();
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,16 +18,16 @@ if(!isset($_SESSION['admin_logado'])){
         <img src="../visual/charlie-logo.png" alt="">
 
         <div id="buttons">
-            <a href="admin_funcoes.php">
-                <button id="button_insert_prod"  class="btn btn-dark btn2">ADMIN</button>
+            <a href="cadastrar_admin.php">
+                <button id="button_insert_prod"  class="btn btn-dark btn2">CADASTRAR ADMIN</button>
             </a>
 
-            <a href="produtos_funcoes.php">
-                <button id="button_list_prod" class="btn btn-dark btn2">PRODUTOS</button>
+            <a href="#">
+                <button id="button_list_prod" class="btn btn-dark btn2">LISTAR ADMIN</button>
             </a>
         
-            <a href="login.php">
-                <button id="button_exit" class="btn btn-dark btn3">SAIR</button>
+            <a href="painel_admin.php">
+                <button id="button_exit" class="btn btn-dark btn3">VOLTAR</button>
             </a>
         </div>
     </div>
