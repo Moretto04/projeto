@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+  
+}
+
+#welcome_title {
+    color:red;
+    display: grid;
+    text-align: center;
+    
+}
+
+#background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 100px;
+    
+
+}
+
+#buttons {
+    margin: 0;
+    padding: 0;
+	background-color: #000000;
+    margin: center;
+    flex-direction: column;
+    
+    width: 700px;
+    height: 350px;
+    border-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    box-shadow: 8px 28px 35px 19px rgba(0,0,0,0.25);  
+
+}
+
+img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 100px;
+    width: 30%;
+
+
+}
+
+.btn2{
+    background-color: white;
+    color: black;
+
+    
+    height: 55px;
+    width: 400px;
+    border-radius: 30px;
+    margin: 10px;
+
+    font-weight: 600;
+    
+    
+    
+}
+
+.btn2:hover{
+    background-color: rgb(255, 0, 0);
+    border: rgb(255, 0, 0);
+    color: white;
+    transition: 0.2s linear
+}
+
+
+#button_insert_prod{
+    border-radius: 30px;
+}
+

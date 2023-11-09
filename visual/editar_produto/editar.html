@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- css da pagina -->
+    <link rel="stylesheet" href="../visual/editar_produto/editar.css">
+    <title>Editar Produto</title>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center ">
+        <div class="row">
+            <div class="col">
+                <div class="form" action="editar_produto.php" method="post" enctype="multipart/form-data">
+                    <div class="title">Editar Produto</div>
+
+                    <div class="input-container ic1">
+                        <input class="input" type="text" name="nome" id="nome" placeholder="" value="<?= $produto['PRODUTO_NOME'] ?>" required /> 
+                        <div class="cut"></div>
+                        <label for="nome" class="placeholder">Nome</label>
+                    </div>
+                    
+                    <div class="input-container ic2">
+                        <textarea id="lastname" class="input" type="text" placeholder=" " required><?= $produto['PRODUTO_DESC'] ?></textarea>
+                        <div class="cut"></div>
+                        <label name="descricao" id="descricao" class="placeholder">Descrição</label>
+                    </div>
+
+                    <div class="input-container ic2">
+                        <input id="preco" class="input" type="number" name="preco" placeholder=" " step="0.01" value="<?= $produto['PRODUTO_PRECO'] ?>" required/>
+                        <div class="cut"></div>
+                        <label for="preco" class="placeholder">Preço</label>
+                    </div>
+
+                    <div class="input-container ic2">
+                        <input id="desconto" class="input" type="number" name="desconto" placeholder=" " step="0.01" value="<?= $produto['PRODUTO_DESCONTO'] ?>"/>
+                        <div class="cut"></div>
+                        <label for="desconto" class="placeholder">Desconto</label>
+                    </div>
+
+
+                    <div class="input-container ic2">
+                        <select id="categoria_id" class="input" name="categoria_id" placeholder=" " required/>
+                            <?php 
+                                foreach ($categorias as $categoria): 
+                                    $selected = $produto['CATEGORIA_ID'] == $categoria['CATEGORIA_ID'] ? 'selected' : '';
+                             ?>
+                                <option value="<?= $categoria['CATEGORIA_ID'] ?>" <?= $selected ?>><?= $categoria['CATEGORIA_NOME'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="cut"></div>
+                        <label for="categoria_id" class="placeholder">Categoria</label>
+                    </div>
+
+
+                    <div class="input-container ic2">
+                        <input id="ativo" class="input" type="checkbox" name="ativo" value="1" placeholder=" " <?= $produto['PRODUTO_ATIVO'] ? 'checked' : '' ?> />
+                        <div class="cut"></div>
+                        <label for="ativo" class="placeholder">Ativo:</label>
+                    </div>
+
+                    <div class="input-container ic2">
+                        <!-- <input id="url_imagem" class="input" type="text" name="url_imagem" placeholder=" "      -->
+                        <?php 
+                        foreach($imagens_existentes as $imagem) {
+                            echo '<div>';
+                            echo '<label>URL da Imagem:</label>';
+                            echo '<input placeholder="" class="input" type="text" name="editar_imagem_url[' . $imagem['IMAGEM_ID'] . ']" value="' . $imagem['IMAGEM_URL'] . '">';
+                            echo '</div>';
+                        }
+                        ?>
+                        <!-- /> -->
+                        <div class="cut cut-short"></div>
+                        <label class="placeholder">URL</label>
+                    </div>
+                    <div id="btn">
+                        <button type="submit" class="submit btn btn-success">Atualizar Produto</button>
+                        <button type="button" class="btn btn-dark" id="voltar"><i class="fa-solid fa-arrow-left" style="color: white;"></i><a href="listar_produtos.php" style="text-decoration: none; color: white;"> Voltar à Lista de Produtos</a></button>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
