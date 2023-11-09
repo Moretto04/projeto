@@ -36,9 +36,17 @@ if(!isset($_SESSION['admin_logado'])){
             <a href="listar_produtos.php">
                 <button id="button_list_prod" class="btn btn-dark btn2">LISTAR PRODUTOS</button>
             </a>
+
+            <a href="cadastrar_admin.php">
+                <button id="button_list_prod" class="btn btn-dark btn2">CADASTRAR USUÁRIO</button>
+            </a>
+
+            <a href="#">
+                <button id="button_list_prod" class="btn btn-dark btn2">LISTAR USUÁRIO</button>
+            </a>
         
             <a href="login.php">
-                <button id="button_exit" class="btn btn-dark btn2">SAIR</button>
+                <button id="button_exit" class="btn btn-dark btn3">SAIR</button>
             </a>
         </div>
     </div>
