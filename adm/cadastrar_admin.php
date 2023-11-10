@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
         $stmt->bindParam(':ativo', $ativo, PDO::PARAM_STR);
-        $stmt->bindParam(':avatar', $avatar, PDO::PARAM_INT);
+        $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
 
         $stmt->execute();
 

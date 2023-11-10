@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin_logado'])) {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT ADMINISTRADOR.*, ADM_ID, ADM_NOME, ADM_EMAIL, ADM_ATIVO FROM ADMINISTRADOR");
+    $stmt = $pdo->prepare("SELECT ADMINISTRADOR.*,ADM_IMAGEM, ADM_ID, ADM_NOME, ADM_EMAIL, ADM_ATIVO FROM ADMINISTRADOR");
     $stmt->execute();
     $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -41,23 +41,24 @@ try {
             <th>NOME</th> 
             <th>EMAIL</th>
             <th>ATIVO</th>
+            <th>EDITAR</th>
             
         </tr>
         
         <?php foreach($admin as $admin): ?> <!--aq ele esta se referindo as infos do banco-->
         <tr>
-            <td><img src="<?php echo $admin['ADM_NOME']; ?>" alt="<?php echo $admin['ADM_NOME']; ?>" width="50"></td>
+            <td><img src="<?php echo $admin['ADM_IMAGEM']; ?>" alt="<?php echo $admin['ADM_NOME']; ?>" width="50"></td>
 
             <td><?php echo $admin['ADM_ID']; ?></td>
-
+            
             <td><?php echo $admin['ADM_NOME']; ?></td>
 
             <td><?php echo $admin['ADM_EMAIL']; ?></td>
-                    
+
             <td><?php echo ($admin['ADM_ATIVO'] == 1 ? 'Sim' : 'Não'); ?></td>
 
             <td>
-                <button type="button" id="editar" class="btn btn-success"><a href="editar_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EDITAR</a></button>
+                <button type="button" id="editar" class="btn btn-success"><a href="editar_admin.php?id=<?php echo $admin['ADM_ID']; ?>">EDITAR</a></button>
                 <button type="button" class="btn btn-danger"><a href="excluir_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EXCLUIR</a></button>
             </td>
         </tr>

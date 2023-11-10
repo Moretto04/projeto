@@ -28,14 +28,7 @@ $imagens_existentes = $stmt_img->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Atualizando as URLs das imagens.
-    if (isset($_POST['editar_imagem_url'])) {
-        foreach ($_POST['editar_imagem_url'] as $imagem_id => $url_editada) {
-            $stmt_update = $pdo->prepare("UPDATE PRODUTO_IMAGEM SET IMAGEM_URL = :url WHERE IMAGEM_ID = :imagem_id");
-            $stmt_update->bindParam(':url', $url_editada, PDO::PARAM_STR);
-            $stmt_update->bindParam(':imagem_id', $imagem_id, PDO::PARAM_INT);
-            $stmt_update->execute();
-        }
-    }
+   
 
     // Atualizando as informações do produto.
     $nome = $_POST['nome'];
