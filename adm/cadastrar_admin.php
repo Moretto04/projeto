@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $stmt->execute();
 
-        echo "<p style='color:green;'>Administrador cadastrado com sucesso!</p>";
+        echo "<script>alert('Administrador cadastrado com sucesso!');</script>";
     } catch (PDOException $e) {
-        echo "<p style='color:red;'>Erro ao cadastrar o administrador: " . $e->getMessage() . "</p>";
+        echo "<script>alert('Erro ao cadastrar administrador');</script>" . $e->getMessage() . "</p>";
     }
 }
 ?>
@@ -47,11 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Produto</title>
+    <title>Cadastro de Administrador</title>
 </head>
 
 <body>
-    <h2>Cadastrar Usuário</h2>
+    <h2>Cadastrar Administrador</h2>
     <form action="" method="post" enctype="multipart/form-data">
         <!-- Campos do formulário para inserir informações do produto -->
         <label for="nome">Nome:</label>
