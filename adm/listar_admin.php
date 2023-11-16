@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin_logado'])) {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT ADMINISTRADOR.*,ADM_IMAGEM, ADM_ID, ADM_NOME, ADM_EMAIL, ADM_ATIVO FROM ADMINISTRADOR");
+    $stmt = $pdo->prepare("SELECT ADMINISTRADOR.*,ADM_IMAGEM, ADM_ID, ADM_NOME, ADM_EMAIL, ADM_ATIVO FROM ADMINISTRADOR ORDER BY ADM_ID");
     $stmt->execute();
     $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
