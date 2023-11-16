@@ -87,6 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
 
     <button type="submit">Atualizar Administrador</button>
+    <div>
+        <button><a href="listar_admin.php">Voltar</a></button>
+    </div>
 </form>
 </body>
 </html>

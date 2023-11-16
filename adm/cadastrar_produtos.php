@@ -161,6 +161,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
         </form>
+        <div>
+            <button><a href="produto.funcoes.php"></a>Voltar</button>
+        </div>
     </div>
 
 

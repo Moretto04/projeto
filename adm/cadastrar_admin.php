@@ -74,6 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p>
             <button type="submit">CADASTRAR</button>
     </form>
+
+    <div>
+        <button><a href="admin_funcoes.php">Voltar</a></button>
+    </div>
 </body>
 
 </html>

@@ -102,6 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
     <p>
     <button type="submit">Atualizar Produto</button>
+
+    <div>
+      <button><a href="listar_produto.php"></a>Voltar</button>
+    </div>
 </form>
 </body>
 </html>
