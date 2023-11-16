@@ -44,43 +44,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!-- Início do código HTML -->
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Produto</title>
-    <script>
-        // Adiciona um novo campo de imagem URL.
-        function adicionarImagem() {
-            const containerImagens = document.getElementById('containerImagens');
-            const novoInput = document.createElement('input');
-            novoInput.type = 'text';
-            novoInput.name = 'avatar';
-            containerImagens.appendChild(novoInput);
-        }
-    </script>
 </head>
+
 <body>
-<h2>Cadastrar Usuário</h2>
-<form action="" method="post" enctype="multipart/form-data">
-    <!-- Campos do formulário para inserir informações do produto -->
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" id="nome" required>
-    <p>
-    <label for="email">Email:</label>
-    <input name="email" id="email" required></input>
-    <p>
-    <label for="preco">Senha:</label>
-    <input type="text" name="senha" id="senha" required>
-    <p>
-    <label for="ativo">Ativo:</label>
-    <input type="checkbox" name="ativo" id="ativo" value="1" checked>
-    <p>
-    <!-- Área para adicionar URLs de imagens. -->
-    <label for="imagem">Imagem URL:</label>
-    <div id="containerImagens">
-        <input type="text" name="avatar" id="avatar">
-    </div>
-    <p>
-    <button type="submit">CADASTRAR</button>
-</form>
+    <h2>Cadastrar Usuário</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        <!-- Campos do formulário para inserir informações do produto -->
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" required>
+        <p>
+            <label for="email">Email:</label>
+            <input name="email" id="email" required></input>
+        <p>
+            <label for="preco">Senha:</label>
+            <input type="text" name="senha" id="senha" required>
+        <p>
+            <label for="ativo">Ativo:</label>
+            <input type="checkbox" name="ativo" id="ativo" value="1" checked>
+        <p>
+            <!-- Área para adicionar URLs de imagens. -->
+            <label for="imagem">Imagem URL:</label>
+        <div id="containerImagens">
+            <input type="text" name="avatar" id="avatar">
+        </div>
+        <p>
+            <button type="submit">CADASTRAR</button>
+    </form>
 </body>
+
 </html>

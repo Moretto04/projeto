@@ -25,8 +25,9 @@
 
                 <?php
                     if(isset($_GET['erro'])){
-                        echo '<p style="color: red;">Nome de usuario ou senha invalido!</p>';
+                        echo '<p style="color: red; margin-top: 30px;">Nome de usuario ou senha invalido!</p>';
                     }
+
                 ?>
 
             </form>

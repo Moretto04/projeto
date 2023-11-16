@@ -56,16 +56,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt_imagem->execute();
         }
 
-        echo "<p style='color:green;'>Produto cadastrado com sucesso!</p>";
+        echo "<script>alert('Produto cadastrado com sucesso!');</script>";
     } catch (PDOException $e) {
-        echo "<p style='color:red;'>Erro ao cadastrar produto: " . $e->getMessage() . "</p>";
+        echo "<script>alert('Erro ao cadastrar produto');</script>" . $e->getMessage() . "</p>";
     }
 }
 ?>
 
+
 <!-- Início do código HTML -->
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Produto</title>
@@ -79,46 +81,91 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             containerImagens.appendChild(novoInput);
         }
     </script>
-</head>
-<body>
-<h2>Cadastrar Produto</h2>
-<form action="" method="post" enctype="multipart/form-data">
-    <!-- Campos do formulário para inserir informações do produto -->
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" id="nome" required>
-    <p>
-    <label for="descricao">Descrição:</label>
-    <textarea name="descricao" id="descricao" required></textarea>
-    <p>
-    <label for="preco">Preço:</label>
-    <input type="number" name="preco" id="preco" step="0.01" required>
-    <p>
-    <label for="desconto">Desconto:</label>
-    <input type="number" name="desconto" id="desconto" step="0.01" required>
-    <p>
-    <label for="categoria_id">Categoria:</label>
-    <select name="categoria_id" id="categoria_id" required>
-        <?php 
-            // Loop para preencher o dropdown de categorias.
-            foreach ($categorias as $categoria): 
-        ?>
-        
 
-            <option value="<?= $categoria['CATEGORIA_ID'] ?>"><?= $categoria['CATEGORIA_NOME'] ?></option>
-        <?php endforeach; ?>
-    </select>
-    <p>
-    <label for="ativo">Ativo:</label>
-    <input type="checkbox" name="ativo" id="ativo" value="1" checked>
-    <p>
-    <!-- Área para adicionar URLs de imagens. -->
-    <label for="imagem">Imagem URL:</label>
-    <div id="containerImagens">
-        <input type="text" name="imagem_url[]" required>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../visual/cadastrar_produtos/cadastrar_produto.css">
+</head>
+
+<body>
+
+    
+    <div class="container">
+        <img src="../visual/charlie-logo.png" style="width: 40%;" alt="">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" name="nome" id="nome" required>
+                    <div class="underline"></div>
+                    <label for="nome">Nome</label>
+                </div>
+                <div class="input-data">
+                    <input type="number" name="preco" id="preco" step="0.01" required>
+                    <div class="underline"></div>
+                    <label for="preco">Preço</label>
+                </div>
+            </div>
+
+            
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="number" name="desconto" id="desconto" step="0.01" required>
+                    <div class="underline"></div>
+                    <label for="desconto">Desconto</label>
+                </div>
+                <div id="categoria">
+                    <label for="categoria_id">Categoria</label>
+                    <select name="categoria_id" id="categoria_id" class="form-select" required>
+                        <?php
+                        // Loop para preencher o dropdown de categorias.
+                        foreach ($categorias as $categoria) :
+                        ?>
+
+
+                            <option value="<?= $categoria['CATEGORIA_ID'] ?>"><?= $categoria['CATEGORIA_NOME'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="input-data textarea">
+                    <textarea name="descricao" id="descricao" rows="8" cols="80" required></textarea>
+                    <br />
+                    <div class="underline"></div>
+                    <label for="">Descricao</label>
+                    <br />
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+                <div class="input-data" id="containerImagens">
+                    <input type="text" name="imagem_url[]" required>
+                    <div class="underline"></div>
+                    <label for="imagem">Imagem URL</label>
+                    <button type="button" class="btn btn-outline-dark" style="margin-top: 20px;" onclick="adicionarImagem()">Adicionar mais imagens</button>
+                </div>
+                <div id="ativo">
+                    <label class="form-check-label" for="ativo">Ativo</label>
+                    <input type="checkbox" class="form-check-input" name="ativo" id="ativo" value="1" checked>
+                </div>
+            </div>
+
+
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <button style="margin-top: 30px;" class="btn btn-success" type="submit">Cadastrar Produto</button>
+                </div>
+            </div>
+        </form>
     </div>
-    <button type="button" onclick="adicionarImagem()">Adicionar mais imagens</button>
-    <p>
-    <button type="submit">Cadastrar Produto</button>
-</form>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
+
 </html>
