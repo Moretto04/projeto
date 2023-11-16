@@ -66,7 +66,7 @@ try {
     </table>
 
     <div id="voltar">
-        <button id="btn"  type="button" class="btn btn-dark" ><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="painel_admin.php"> VOLTAR AO PAINEL</a></button>
+        <button id="btn"  type="button" class="btn btn-dark" ><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="admin_funcoes.php"> VOLTAR AO PAINEL</a></button>
     </div>
     
     <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>
