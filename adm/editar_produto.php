@@ -28,7 +28,7 @@ $imagens_existentes = $stmt_img->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Atualizando as URLs das imagens.
-   
+
 
     // Atualizando as informações do produto.
     $nome = $_POST['nome'];
@@ -59,53 +59,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <title>Editar Produto</title>
 </head>
+
 <body>
-<h2>Editar Produto</h2>
-<form action="" method="post" enctype="multipart/form-data">
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" id="nome" value="<?= $produto['PRODUTO_NOME'] ?>" required>
-    <p>
-    <label for="descricao">Descrição:</label>
-    <textarea name="descricao" id="descricao" required><?= $produto['PRODUTO_DESC'] ?></textarea>
-    <p>
-    <label for="preco">Preço:</label>
-    <input type="number" name="preco" id="preco" step="0.01" value="<?= $produto['PRODUTO_PRECO'] ?>" required>
-    <p>
-    <label for="desconto">Desconto:</label>
-    <input type="number" name="desconto" id="desconto" step="0.01" value="<?= $produto['PRODUTO_DESCONTO'] ?>" required>
-    <p>
-    <label for="categoria_id">Categoria:</label>
-    <select name="categoria_id" id="categoria_id" required>
-        <?php 
-            foreach ($categorias as $categoria): 
-                $selected = $produto['CATEGORIA_ID'] == $categoria['CATEGORIA_ID'] ? 'selected' : '';
-        ?>
-            <option value="<?= $categoria['CATEGORIA_ID'] ?>" <?= $selected ?>><?= $categoria['CATEGORIA_NOME'] ?></option>
-        <?php endforeach; ?>
-    </select>
-    <p>
-    <label for="ativo">Ativo:</label>
-    <input type="checkbox" name="ativo" id="ativo" value="1" <?= $produto['PRODUTO_ATIVO'] ? 'checked' : '' ?>>
-    <p>
-    <!-- Lista de imagens existentes -->
-    <?php 
-    foreach($imagens_existentes as $imagem) {
-        echo '<div>';
-        echo '<label>URL da Imagem:</label>';
-        echo '<input type="text" name="editar_imagem_url[' . $imagem['IMAGEM_ID'] . ']" value="' . $imagem['IMAGEM_URL'] . '">';
-        echo '</div>';
-    }
-    ?>
-    <p>
-    <button type="submit">Atualizar Produto</button>
+    <h2>Editar Produto</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="<?= $produto['PRODUTO_NOME'] ?>" required>
+        <p>
+            <label for="descricao">Descrição:</label>
+            <textarea name="descricao" id="descricao" required><?= $produto['PRODUTO_DESC'] ?></textarea>
+        </P>
+
+        <p>
+            <label for="preco">Preço:</label>
+            <input type="number" name="preco" id="preco" step="0.01" value="<?= $produto['PRODUTO_PRECO'] ?>" required>
+        </P>
+
+        <p>
+            <label for="desconto">Desconto:</label>
+            <input type="number" name="desconto" id="desconto" step="0.01" value="<?= $produto['PRODUTO_DESCONTO'] ?>"
+                required>
+        </P>
+
+        <p>
+            <label for="categoria_id">Categoria:</label>
+            <select name="categoria_id" id="categoria_id" required>
+                <?php
+                foreach ($categorias as $categoria):
+                    $selected = $produto['CATEGORIA_ID'] == $categoria['CATEGORIA_ID'] ? 'selected' : '';
+                    ?>
+                    <option value="<?= $categoria['CATEGORIA_ID'] ?>" <?= $selected ?>>
+                        <?= $categoria['CATEGORIA_NOME'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </P>
+
+        <p>
+            <label for="ativo">Ativo:</label>
+            <input type="checkbox" name="ativo" id="ativo" value="1" <?= $produto['PRODUTO_ATIVO'] ? 'checked' : '' ?>>
+        </P>
+
+        <p>
+            <!-- Lista de imagens existentes -->
+            <?php
+            foreach ($imagens_existentes as $imagem) {
+                echo '<div>';
+                echo '<label>URL da Imagem:</label>';
+                echo '<input type="text" name="editar_imagem_url[' . $imagem['IMAGEM_ID'] . ']" value="' . $imagem['IMAGEM_URL'] . '">';
+                echo '</div>';
+            }
+            ?>
+        </P>
+
+        <p>
+            <button type="submit">Atualizar Produto</button>
+        </P>
+    </form>
 
     <div>
-      <button><a href="listar_produto.php"></a>Voltar</button>
+        <button><a href="listar_produtos.php">Voltar</a></button>
     </div>
-</form>
 </body>
+
 </html>
