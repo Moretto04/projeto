@@ -82,14 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../visual/cadastrar_produtos/cadastrar_produto.css">
 </head>
 
 <body>
 
-    
     <div class="container">
         <img src="../visual/charlie-logo.png" style="width: 40%;" alt="">
         <form action="" method="post" enctype="multipart/form-data">
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
 
-            
+
             <div class="form-row">
                 <div class="input-data">
                     <input type="number" name="desconto" id="desconto" step="0.01" required>
@@ -118,11 +118,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <select name="categoria_id" id="categoria_id" class="form-select" required>
                         <?php
                         // Loop para preencher o dropdown de categorias.
-                        foreach ($categorias as $categoria) :
-                        ?>
+                        foreach ($categorias as $categoria):
+                            ?>
 
 
-                            <option value="<?= $categoria['CATEGORIA_ID'] ?>"><?= $categoria['CATEGORIA_NOME'] ?></option>
+                            <option value="<?= $categoria['CATEGORIA_ID'] ?>">
+                                <?= $categoria['CATEGORIA_NOME'] ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -146,7 +148,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="text" name="imagem_url[]" required>
                     <div class="underline"></div>
                     <label for="imagem">Imagem URL</label>
-                    <button type="button" class="btn btn-outline-dark" style="margin-top: 20px;" onclick="adicionarImagem()">Adicionar mais imagens</button>
+                    <button type="button" class="btn btn-outline-dark" style="margin-top: 20px;"
+                        onclick="adicionarImagem()">Adicionar mais imagens</button>
                 </div>
                 <div id="ativo">
                     <label class="form-check-label" for="ativo">Ativo</label>
@@ -161,14 +164,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
         </form>
-       
-    </div>
-    <div>
-        <button><a href="produtos_funcoes.php">Voltar</a></button>
     </div>
 
+    <div id="voltar">
+        <button id="btn" type="button" class="btn btn-dark" ><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="produtos_funcoes.php" style="text-decoration: none; color: white;"> Voltar</a></button>
+    </div>
 
-
+    <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
