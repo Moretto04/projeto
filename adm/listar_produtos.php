@@ -27,13 +27,15 @@ try {
 
     <!-- css da pagina -->
     <link rel="stylesheet" href="../visual/listar_produtos/lista.css">
-    <title>Lista Produtos</title>
+    <title>Lista de Produtos</title>
 
 </head>
 
 <body>
     <h2>Lista de Produtos</h2>
-    <div id="logo"><img src="../visual/charlie-logo.png" style="width: 20%;" alt=""></div>
+    <div id="logo">
+        <a id="logo" href="produtos_funcoes.php"><img src="../visual/charlie-logo.png" style="width: 40%;" alt=""></a>
+    </div>
     <table  class="table table-hover table-striped-columns">
         <tr>
             <th>IMAGEM</th> 
@@ -74,7 +76,7 @@ try {
     </table>
 
     <div id="voltar">
-        <button id="btn"  type="button" class="btn btn-dark" ><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="produtos_funcoes.php"> VOLTAR AO PAINEL</a></button>
+        <button id="btn"  type="button" class="btn btn-dark" ><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="produtos_funcoes.php"> Voltar</a></button>
     </div>
     
     <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>

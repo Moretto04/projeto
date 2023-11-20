@@ -167,6 +167,11 @@ form .form-row .textarea {
     }
 }
 
+#ativo{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
 #categoria{
     width: 100%;
 }
@@ -192,3 +197,6 @@ form .form-row .textarea {
     transition: all 0.5s;
 }
  
+#url_imagens{
+    width: 100%;
+}

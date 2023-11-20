@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } catch (PDOException $e) {
         echo "<p style='color:red;'>Erro ao atualizar Administrador: " . $e->getMessage() . "</p>";
     }
-
 }
 
 ?>
@@ -66,41 +65,74 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Editar Administrador</title>
+
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- css da pagina -->
+    <link rel="stylesheet" href="../visual/editar_admin/editar_admin.css">
 </head>
 
 <body>
-    <h2>Editar Administrador</h2>
-    <form action="" method="post" enctype="multipart/form-data">
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" value="<?= $admin['ADM_NOME'] ?>" required>
-        <p>
-            <label for="email">EMAIL:</label>
-            <input name="email" id="email" required value="<?= $admin['ADM_EMAIL'] ?>">
+    <!-- <h2>Editar Administrador</h2> -->
+    <div class="container">
+        <img src="../visual/charlie-logo.png" style="width: 40%; margin-right: 40px; " alt="">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="input-data" style="width: 400px;">
+                    <input type="text" name="nome" id="nome" value="<?= $admin['ADM_NOME'] ?>" required>
+                    <div class="underline"></div>
+                    <label for="nome">Nome</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="email" id="email" value="<?= $admin['ADM_EMAIL'] ?>" required>
+                    <div class="underline"></div>
+                    <label for="email">Email</label>
+                </div>
+            </div>
 
-        <p>
-            <label for="senha">SENHA:</label>
-            <input type="password" name="senha" id="senha" step="0.01" value="<?= $admin['ADM_SENHA'] ?>" required>
-        <p>
-            <label for="ativo">Ativo:</label>
-            <input type="hidden" name="ativo" value="0">
-            <input type="checkbox" name="ativo" id="ativo" value="1" <?= $admin['ADM_ATIVO'] ? 'checked' : '' ?>>
-        <p>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="password" name="senha" id="senha" value="<?= $admin['ADM_SENHA'] ?>" required>
+                    <div class="underline"></div>
+                    <label for="senha">Senha</label>
+                </div>
+                <div id="ativo">
+                    <label class="form-check-label" for="ativo">Ativo</label>
+                    <input type="checkbox" class="form-check-input" name="ativo" id="ativo" value="1" checked>
+                </div>
+            </div>
 
-            <?php
-            foreach ($imagens_existentes as $avatar) {
-                echo '<div>';
-                echo '<label>URL da Imagem:</label>';
-                echo '<input type="text" name="editar_avatar_url[' . $avatar['ADM_IMAGEM'] . ']" value="' . $avatar['ADM_IMAGEM'] . '">';
-                echo '</div>';
-            }
-            ?>
+            <div class="form-row" >
+                <div id="url_imagens">
+                    <?php
+                    foreach ($imagens_existentes as $avatar) {
+                        echo '<div class="input-data" style="width: 400px;">';
+                            echo '<input type="text" name="editar_avatar_url[' . $avatar['ADM_IMAGEM'] . ']" value="' . $avatar['ADM_IMAGEM'] . '">';
+                            echo '<div class="underline"></div>';
+                            echo '<label for="imagem">Imagem URL</label>';
+                        echo '</div>';
+                        echo '<br>';
+                    }
+                    ?>
+                </div>
+            </div>
 
-            <button type="submit">Atualizar Administrador</button>
-    <div>
-        <button><a href="listar_admin.php">Voltar</a></button>
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <button style="margin-top: 30px;" class="btn btn-outline-success" type="submit">Cadastrar Produto</button>
+                </div>
+            </div>
+
+        </form>
     </div>
-        </p>
-    </form>
+
+    <div id="voltar">
+        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="listar_admin.php" style="text-decoration: none; color: white;"> Voltar</a></button>
+    </div>
+
+    <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

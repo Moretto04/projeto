@@ -117,7 +117,7 @@ form .form-row .textarea {
 .submit-btn .input-data {
     overflow: visible;
     height: 45px !important;
-    width: 25% !important;
+    width: 100% !important;
 }
 
 .submit-btn .input-data .inner {

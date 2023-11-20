@@ -48,36 +48,69 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Administrador</title>
+
+    <!-- css bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- css da pagina -->
+    <link rel="stylesheet" href="../visual/cadastrar_admin/cadastrar_admin.css">
 </head>
 
 <body>
-    <h2>Cadastrar Administrador</h2>
-    <form action="" method="post" enctype="multipart/form-data">
-        <!-- Campos do formulário para inserir informações do produto -->
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" required>
-        <p>
-            <label for="email">Email:</label>
-            <input name="email" id="email" required></input>
-        <p>
-            <label for="preco">Senha:</label>
-            <input type="text" name="senha" id="senha" required>
-        <p>
-            <label for="ativo">Ativo:</label>
-            <input type="checkbox" name="ativo" id="ativo" value="1" checked>
-        <p>
-            <!-- Área para adicionar URLs de imagens. -->
-            <label for="imagem">Imagem URL:</label>
-        <div id="containerImagens">
-            <input type="text" name="avatar" id="avatar">
-        </div>
-        <p>
-            <button type="submit">CADASTRAR</button>
-    </form>
+    <!-- <h2>Cadastrar Administrador</h2> -->
+    <div class="container">
+        <img src="../visual/charlie-logo.png" style="width: 40%; margin-right: 30px;" alt="">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="input-data" style="width: 400px;" >
+                    <input type="text" name="nome" id="nome" required>
+                    <div class="underline"></div>
+                    <label for="nome">Nome</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="email" id="email" required>
+                    <div class="underline"></div>
+                    <label for="email">Email</label>
+                </div>
+            </div>
 
-    <div>
-        <button><a href="admin_funcoes.php">Voltar</a></button>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="password" name="senha" id="senha" required>
+                    <div class="underline"></div>
+                    <label for="preco">Senha</label>
+                </div>
+
+                <div id="ativo">
+                    <label class="form-check-label" for="ativo">Ativo</label>
+                    <input type="checkbox" class="form-check-input" name="ativo" id="ativo" value="1" checked>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-data" id="containerImagens">
+                    <input type="text" name="avatar" id="avatar" required>
+                    <div class="underline"></div>
+                    <label for="imagem">Imagem URL</label>
+                </div>
+            </div>
+
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <button style="margin-top: 30px;" class="btn btn-outline-success" type="submit">Cadastrar admin</button>
+                </div>
+            </div>
+
+        </form>
     </div>
+
+    <div id="voltar">
+        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="admin_funcoes.php" style="text-decoration: none; color: white;"> Voltar</a></button>
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -27,13 +27,15 @@ try {
 
     <!-- css da pagina -->
     <link rel="stylesheet" href="../visual/listar_produtos/lista.css">
-    <title>Lista Produtos</title>
+    <title>Lista de Administradores</title>
 
 </head>
 
 <body>
     <h2>Lista de Administradores</h2>
-    <div id="logo"><img src="../visual/charlie-logo.png" style="width: 20%;" alt=""></div>
+    <div id="logo">
+        <a id="logo" href="admin_funcoes.php"><img src="../visual/charlie-logo.png" style="width: 40%;" alt=""></a>
+    </div>
     <table  class="table table-hover table-striped-columns">
         <tr>
             <th>IMAGEM</th>
