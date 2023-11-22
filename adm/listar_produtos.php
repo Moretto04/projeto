@@ -69,7 +69,7 @@ try {
 
             <td>
                 <button type="button" id="editar" class="btn btn-success"><a href="editar_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EDITAR</a></button>
-                <button type="button" class="btn btn-danger"><a href="excluir_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EXCLUIR</a></button>
+                <button type="button" class="btn btn-danger" style="margin-top: 10px;"><a href="excluir_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EXCLUIR</a></button>
             </td>
         </tr>
         <?php endforeach; ?>

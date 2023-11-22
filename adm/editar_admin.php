@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="form-row submit-btn">
                 <div class="input-data">
-                    <button style="margin-top: 30px;" class="btn btn-outline-success" type="submit">Cadastrar Produto</button>
+                    <button style="margin-top: 30px;" class="btn btn-outline-success" type="submit">Atualizar administrador</button>
                 </div>
             </div>
 
