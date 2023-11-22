@@ -33,27 +33,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-
-
-    // Atualizando as informações do produto.
+    // Atualizando as informações do admnin.
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $ativo = isset($_POST['ativo']) ? 1 : 0;
-
-
     try {
-        $stmt_update_produto = $pdo->prepare("UPDATE ADMINISTRADOR SET ADM_NOME = :nome, ADM_EMAIL = :email, ADM_SENHA = :senha, ADM_ATIVO = :ativo WHERE ADM_ID = :admin_id");
-        $stmt_update_produto->bindParam(':nome', $nome, PDO::PARAM_STR);
-        $stmt_update_produto->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt_update_produto->bindParam(':senha', $senha, PDO::PARAM_STR);
-        $stmt_update_produto->bindParam(':ativo', $ativo, PDO::PARAM_STR);
-        $stmt_update_produto->bindParam(':admin_id', $admin_id, PDO::PARAM_INT);
-        $stmt_update_produto->execute();
+        $stmt_update_admin = $pdo->prepare("UPDATE ADMINISTRADOR SET ADM_NOME = :nome, ADM_EMAIL = :email, ADM_SENHA = :senha, ADM_ATIVO = :ativo WHERE ADM_ID = :admin_id");
+        $stmt_update_admin->bindParam(':nome', $nome, PDO::PARAM_STR);
+        $stmt_update_admin->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt_update_admin->bindParam(':senha', $senha, PDO::PARAM_STR);
+        $stmt_update_admin->bindParam(':ativo', $ativo, PDO::PARAM_STR);
+        $stmt_update_admin->bindParam(':admin_id', $admin_id, PDO::PARAM_INT);
+        $stmt_update_admin->execute();
 
-        echo "<p style='color:green;'>Administrador atualizado com sucesso!</p>";
+        echo "<script>alert('Administrador atualizado com sucesso!'); window.location.href = 'listar_admin.php';</script>";
     } catch (PDOException $e) {
-        echo "<p style='color:red;'>Erro ao atualizar Administrador: " . $e->getMessage() . "</p>";
+        echo "<script>alert('Erro ao atualizar administrador');</script>" . $e->getMessage() . "</p>";
     }
 }
 

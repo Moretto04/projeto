@@ -27,8 +27,7 @@ $stmt_img->execute();
 $imagens_existentes = $stmt_img->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Atualizando as URLs das imagens.
-
+    // Atualizando as URLs das imagens. 
 
     // Atualizando as informações do produto.
     $nome = $_POST['nome'];
@@ -49,9 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_update_produto->bindParam(':produto_id', $produto_id);
         $stmt_update_produto->execute();
 
-        echo "<p style='color:green;'>Produto atualizado com sucesso!</p>";
+        echo "<script>alert('Produto atualizado com sucesso!'); window.location.href = 'listar_produtos.php';</script>";
     } catch (PDOException $e) {
-        echo "<p style='color:red;'>Erro ao atualizar produto: " . $e->getMessage() . "</p>";
+        echo "<script>alert('Erro ao atualizar produto');</script>" . $e->getMessage() . "</p>";
     }
 }
 
@@ -76,26 +75,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <img src="../visual/charlie-logo.png" style="width: 40%;" alt="">
         <form action="" method="post" enctype="multipart/form-data">
+
+
             <div class="form-row">
                 <div class="input-data">
                     <input type="text" name="nome" id="nome" value="<?= $produto['PRODUTO_NOME'] ?>" required>
                     <div class="underline"></div>
                     <label for="nome">Nome</label>
                 </div>
-                <div class="input-data textarea">
-                    <textarea name="descricao" id="descricao" rows="8" cols="80" required><?= $produto['PRODUTO_DESC'] ?></textarea>
-                    <br />
-                    <div class="underline"></div>
-                    <label for="">Descricao</label>
-                    <br />
-                </div>
-            </div>
-
-            <div class="form-row">
                 <div class="input-data">
                     <input type="number" name="preco" id="preco" step="0.01" required>
                     <div class="underline"></div>
                     <label for="preco">Preço</label>
+                </div>
+            </div>
+
+
+
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="number" name="desconto" id="desconto" step="0.01" required>
+                    <div class="underline"></div>
+                    <label for="desconto">Desconto</label>
                 </div>
                 <div id="categoria">
                     <label for="categoria_id">Categoria</label>
@@ -112,28 +113,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
 
-            <div class="form-row" >
+
+            <div class="form-row">
+                <div class="input-data textarea">
+                    <textarea name="descricao" id="descricao" rows="8" cols="80" required><?= $produto['PRODUTO_DESC'] ?></textarea>
+                    <br />
+                    <div class="underline"></div>
+                    <label for="">Descricao</label>
+                    <br />
+                </div>
+            </div>
+
+
+
+            <div class="form-row">
                 <div id="url_imagens">
                     <?php
                     foreach ($imagens_existentes as $imagem) {
                         echo '<div class="input-data" style="padding-right: 30px;">';
-                            echo '<input type="text" name="editar_imagem_url[' . $imagem['IMAGEM_ID'] . ']" value="' . $imagem['IMAGEM_URL'] . '">';
-                            echo '<div class="underline"></div>';
-                            echo '<label for="imagem">Imagem URL</label>';
+                        echo '<input type="text" name="editar_imagem_url[' . $imagem['IMAGEM_ID'] . ']" value="' . $imagem['IMAGEM_URL'] . '">';
+                        echo '<div class="underline"></div>';
+                        echo '<label for="imagem">Imagem URL</label>';
                         echo '</div>';
                         echo '<br>';
                     }
                     ?>
                 </div>
                 <div id="ativo">
-                    <label class="form-check-label" for="ativo" style="margin-left: 18px;" >Ativo</label>
+                    <label class="form-check-label" for="ativo" style="margin-left: 18px;">Ativo</label>
                     <input type="checkbox" class="form-check-input" name="ativo" id="ativo" value="1" checked>
                 </div>
             </div>
 
             <div class="form-row submit-btn">
                 <div class="input-data">
-                    <button style="margin-top: 30px;" class="btn btn-outline-success" type="submit">Cadastrar Produto</button>
+                    <button style="margin-top: 5px;" class="btn btn-outline-success" type="submit">Atualizar Produto</button>
                 </div>
             </div>
         </form>

@@ -8,9 +8,9 @@ if (!isset($_SESSION['admin_logado'])) {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT ADMINISTRADOR.*,ADM_IMAGEM, ADM_ID, ADM_NOME, ADM_EMAIL, ADM_ATIVO FROM ADMINISTRADOR ORDER BY ADM_ID");
+    $stmt = $pdo->prepare("SELECT CATEGORIA.*,CATEGORIA_ID, CATEGORIA_NOME, CATEGORIA_DESC, CATEGORIA_ATIVO FROM CATEGORIA ORDER BY CATEGORIA_ID");
     $stmt->execute();
-    $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $categoria = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "<p style='color:red;'>Erro ao listar os administradores: " . $e->getMessage() . "</p>";
 }
@@ -27,48 +27,45 @@ try {
 
     <!-- css da pagina -->
     <link rel="stylesheet" href="../visual/listar_produtos/lista.css">
-    <title>Lista de Administradores</title>
+    <title>Lista de Categorias</title>
 
 </head>
 
 <body>
-    <h2>Lista de Administradores</h2>
+    <h2>Lista de Categorias</h2>
     <div id="logo">
-        <a id="logo" href="admin_funcoes.php"><img src="../visual/charlie-logo.png" style="width: 40%;" alt=""></a>
+        <a id="logo" href="categoria_funcoes.php"><img src="../visual/charlie-logo.png" style="width: 40%;" alt=""></a>
     </div>
     <table  class="table table-hover table-striped-columns">
         <tr>
-            <th>IMAGEM</th>
             <th>ID</th> 
             <th>NOME</th> 
-            <th>EMAIL</th>
+            <th>DESC</th>
             <th>ATIVO</th>
             <th>AÇÕES</th>
             
         </tr>
         
-        <?php foreach($admin as $admin): ?> <!--aq ele esta se referindo as infos do banco-->
+        <?php foreach($categoria as $categoria): ?> <!--aq ele esta se referindo as infos do banco-->
         <tr>
-            <td><img src="<?php echo $admin['ADM_IMAGEM']; ?>" alt="<?php echo $admin['ADM_NOME']; ?>" width="50"></td>
-
-            <td><?php echo $admin['ADM_ID']; ?></td>
+            <td><?php echo $categoria['CATEGORIA_ID']; ?></td>
             
-            <td><?php echo $admin['ADM_NOME']; ?></td>
+            <td><?php echo $categoria['CATEGORIA_NOME']; ?></td>
 
-            <td><?php echo $admin['ADM_EMAIL']; ?></td>
+            <td><?php echo $categoria['CATEGORIA_DESC']; ?></td>
 
-            <td><?php echo ($admin['ADM_ATIVO'] == 1 ? 'Sim' : 'Não'); ?></td>
+            <td><?php echo ($categoria['CATEGORIA_ATIVO'] == 1 ? 'Sim' : 'Não'); ?></td>
 
             <td>
-                <button type="button" id="editar" class="btn btn-success"><a href="editar_admin.php?id=<?php echo $admin['ADM_ID']; ?>">EDITAR</a></button>
-                <button type="button" class="btn btn-danger"><a href="excluir_admin.php?id=<?php echo $admin['ADM_ID']; ?>">EXCLUIR</a></button>
+                <button type="button" id="editar" class="btn btn-success"><a href="editar_categoria.php?id=<?php echo $categoria['CATEGORIA_ID']; ?>">EDITAR</a></button>
+                <button type="button" class="btn btn-danger"><a href="excluir_categoria.php?id=<?php echo $categoria['CATEGORIA_ID']; ?>">EXCLUIR</a></button>
             </td>
         </tr>
         <?php endforeach; ?>
     </table>
 
     <div id="voltar">
-        <button id="btn"  type="button" class="btn btn-dark" ><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="admin_funcoes.php"> VOLTAR AO PAINEL</a></button>
+        <button id="btn"  type="button" class="btn btn-dark" ><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="categoria_funcoes.php"> VOLTAR AO PAINEL</a></button>
     </div>
     
     <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>

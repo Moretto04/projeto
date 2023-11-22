@@ -1,14 +1,3 @@
-<?php
-
-session_start();
-
-if(!isset($_SESSION['admin_logado'])){
-    header("location:login.php");
-    exit();
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,24 +17,17 @@ if(!isset($_SESSION['admin_logado'])){
     <div  id="background">
         <img src="../visual/charlie-logo.png" alt="">
 
-        <h2>Bem-vindo Administrador!</h2>
-        <h3 style="margin-top: 10px; margin-bottom: 20px; " >Oque gostaria de fazer hoje?</h3>
-
         <div id="buttons">
-            <a href="admin_funcoes.php">
-                <button id="button_insert_prod"  class="btn btn-dark btn2">ADMINISTRADORES</button>
+            <a href="cadastrar_categoria.php">
+                <button id="button_insert_prod"  class="btn btn-dark btn2">CADASTRAR CATEGORIA</button>
             </a>
 
-            <a href="produtos_funcoes.php">
-                <button id="button_list_prod" class="btn btn-dark btn2">PRODUTOS</button>
-            </a>
-
-            <a href="categoria_funcoes.php">
-                <button id="button_list_prod" class="btn btn-dark btn2">CATEGORIAS</button>
+            <a href="listar_categoria.php">
+                <button id="button_list_prod" class="btn btn-dark btn2">LISTAR CATEGORIA</button>
             </a>
         
-            <a href="login.php">
-                <button id="button_exit" class="btn btn-dark btn3">SAIR</button>
+            <a href="painel_admin.php">
+                <button id="button_exit" class="btn btn-dark btn3">VOLTAR</button>
             </a>
         </div>
     </div>

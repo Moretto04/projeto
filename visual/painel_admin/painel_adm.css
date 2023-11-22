@@ -8,12 +8,6 @@ body{
   
 }
 
-#welcome_title {
-    color:red;
-    display: grid;
-    text-align: center;
-    
-}
 
 #background{
     display: flex;

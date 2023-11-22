@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt_imagem->execute();
         }
 
-        echo "<script>alert('Produto cadastrado com sucesso!');</script>";
+        echo "<script>alert('Produto cadastrado com sucesso!'); window.location.href = 'listar_produtos.php';</script>";
     } catch (PDOException $e) {
         echo "<script>alert('Erro ao cadastrar produto');</script>" . $e->getMessage() . "</p>";
     }
