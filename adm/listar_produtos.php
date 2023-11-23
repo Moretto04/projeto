@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin_logado'])) {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT PRODUTO.*, CATEGORIA.CATEGORIA_NOME, PRODUTO_IMAGEM.IMAGEM_URL FROM PRODUTO JOIN CATEGORIA ON PRODUTO.CATEGORIA_ID = CATEGORIA.CATEGORIA_ID LEFT JOIN PRODUTO_IMAGEM ON PRODUTO.PRODUTO_ID = PRODUTO_IMAGEM.PRODUTO_ID ORDER BY PRODUTO_ID");
+    $stmt = $pdo->prepare("SELECT PRODUTO.*, CATEGORIA.CATEGORIA_NOME, PRODUTO_IMAGEM.IMAGEM_URL, PRODUTO_ESTOQUE.PRODUTO_QTD FROM PRODUTO JOIN CATEGORIA ON PRODUTO.CATEGORIA_ID = CATEGORIA.CATEGORIA_ID LEFT JOIN PRODUTO_IMAGEM ON PRODUTO.PRODUTO_ID = PRODUTO_IMAGEM.PRODUTO_ID INNER JOIN PRODUTO_ESTOQUE ON PRODUTO.PRODUTO_ID = PRODUTO_ESTOQUE.PRODUTO_ID ORDER BY PRODUTO_ID");
     $stmt->execute();
     $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -52,6 +52,7 @@ try {
             <th>CATEGORIA</th>
             <th>ATIVO</th>
             <th>DESCONTO</th>
+            <th>ESTOQUE</th>
             <th>ID</th>
             <th>AÇÕES</th>
         </thead>
@@ -59,8 +60,7 @@ try {
 
         <?php foreach ($produtos as $produto): ?> <!--aq ele esta se referindo as infos do banco-->
             <tr>
-                <td><img src="<?php echo $produto['IMAGEM_URL']; ?>" alt="<?php echo $produto['PRODUTO_NOME']; ?>"
-                        width="50"></td>
+                <td><img src="<?php echo $produto['IMAGEM_URL']; ?>" alt="<?php echo $produto['PRODUTO_NOME']; ?>" width="50"></td>
 
                 <td>
                     <?php echo $produto['PRODUTO_NOME']; ?>
@@ -84,6 +84,10 @@ try {
 
                 <td>
                     <?php echo $produto['PRODUTO_DESCONTO']; ?>
+                </td>
+
+                <td>
+                    <?php echo $produto['PRODUTO_QTD']; ?>
                 </td>
 
                 <td>
