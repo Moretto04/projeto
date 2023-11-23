@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ativo = isset($_POST['ativo']) ? 1 : 0;
     $desconto = $_POST['desconto'];
     $imagens = $_POST['imagem_url'];
-    $quantidade = $_POST['quantidade'];
+    $estoque = $_POST['estoque'];
 
     // Inserindo produto no banco.
     try {
@@ -44,24 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':desconto', $desconto, PDO::PARAM_STR);
         $stmt->execute();
 
-
-
-        //ESTOQUE
-        //$sql = "INSERT INTO PRODUTO_ESTOQUE (PRODUTO_QTD) VALUES (:quantidade) PRODUTO_ESTOQUE INNER JOIN PRODUTO ON PRODUTO_ESTOQUE.PRODUTO_ID = PRODUTO.PRODUTO_ID";
-        //$stmt = $pdo->prepare($sql);
-        //$stmt->bindParam(":quntidade", $quantidade, PDO::PARAM_INT);
-        // $stmt->execute();
-
-
         // Pegando o ID do produto inserido.
         $produto_id = $pdo->lastInsertId();
 
 
-        // Inserindo no estoque.
-        $sql_estoque = "INSERT INTO PRODUTO_ESTOQUE (PRODUTO_ID, PRODUTO_QTD) VALUES (:produto_id, :quantidade)";
+        // Inserindo estoque.
+        $sql_estoque = "INSERT INTO PRODUTO_ESTOQUE (PRODUTO_ID, PRODUTO_QTD) VALUES (:produto_id, :estoque)";
         $stmt_estoque = $pdo->prepare($sql_estoque);
         $stmt_estoque->bindParam(':produto_id', $produto_id, PDO::PARAM_INT);
-        $stmt_estoque->bindParam(':quantidade', $quantidade, PDO::PARAM_INT);
+        $stmt_estoque->bindParam(':estoque', $estoque, PDO::PARAM_INT);
         $stmt_estoque->execute();
 
         // Inserindo imagens no banco.
@@ -137,9 +128,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="preco">Preço</label>
                 </div>
                 <div class="input-data">
-                    <input type="number" name="quantidade" id="quantidade" step="1" required>
+                    <input type="number" name="estoque" id="estoque" step="1" required>
                     <div class="underline"></div>
-                    <label for="quantidade">Quantidade em Estoque</label>
+                    <label for="estoque">Estoque</label>
                 </div>
             </div>
 
