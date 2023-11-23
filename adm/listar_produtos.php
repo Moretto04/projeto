@@ -24,8 +24,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- css bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- css da pagina -->
     <link rel="stylesheet" href="../visual/listar_produtos/lista.css">
@@ -58,7 +57,7 @@ try {
         </thead>
 
 
-        <?php foreach ($produtos as $produto): ?> <!--aq ele esta se referindo as infos do banco-->
+        <?php foreach ($produtos as $produto) : ?> <!--aq ele esta se referindo as infos do banco-->
             <tr>
                 <td><img src="<?php echo $produto['IMAGEM_URL']; ?>" alt="<?php echo $produto['PRODUTO_NOME']; ?>" width="50"></td>
 
@@ -95,8 +94,8 @@ try {
                 </td>
 
                 <td>
-                    <button type="button" id="editar" class="btn btn-success"><a href="editar_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EDITAR</a></button>
-                    <button type="button" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 10px;"><a href="excluir_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EXCLUIR</a></button>
+                    <button type="button" id="editar" class="btn btn-success" style="margin-left: 5px;"><a href="editar_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EDITAR</a></button>
+                    <button type="button" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 10px; margin-left: 5px;"><a href="excluir_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EXCLUIR</a></button>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -107,7 +106,7 @@ try {
     </div>
 
 
-    
+
     <!-- alert do botão de excluir -->
 
     <script>
@@ -121,21 +120,21 @@ try {
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             var searchInput = document.getElementById('search-input');
             var searchButton = document.getElementById('search-button');
             var tableRows = document.querySelectorAll('#produtos-table tbody tr');
             var tableHead = document.querySelector('#produtos-table thead');
 
-            searchButton.addEventListener('click', function () {
+            searchButton.addEventListener('click', function() {
                 var searchTerm = searchInput.value.toLowerCase();
 
-                tableRows.forEach(function (row) {
-                    var rowData = Array.from(row.children).map(function (cell) {
+                tableRows.forEach(function(row) {
+                    var rowData = Array.from(row.children).map(function(cell) {
                         return cell.textContent.toLowerCase();
                     });
 
-                    var shouldShow = rowData.some(function (data) {
+                    var shouldShow = rowData.some(function(data) {
                         return data.includes(searchTerm);
                     });
 
@@ -146,15 +145,15 @@ try {
                 tableHead.style.display = 'table-header-group';
             });
 
-            searchInput.addEventListener('input', function () {
+            searchInput.addEventListener('input', function() {
                 var searchTerm = searchInput.value.trim().toLowerCase();
 
-                tableRows.forEach(function (row) {
-                    var rowData = Array.from(row.children).map(function (cell) {
+                tableRows.forEach(function(row) {
+                    var rowData = Array.from(row.children).map(function(cell) {
                         return cell.textContent.toLowerCase();
                     });
 
-                    var shouldShow = rowData.some(function (data) {
+                    var shouldShow = rowData.some(function(data) {
                         return data.includes(searchTerm);
                     });
 
@@ -172,9 +171,7 @@ try {
 
 
     <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -8,6 +8,12 @@ body{
   
 }
 
+.vertical {
+    border-left: 6px solid black;
+    height: 100px;
+    position:absolute;
+    left: 50%;
+}
 
 #background{
     display: flex;
@@ -40,12 +46,8 @@ body{
 }
 
 img{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     margin-bottom: 100px;
-    width: 30%;
+    width: 25%;
 
 
 }

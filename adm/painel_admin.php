@@ -2,7 +2,7 @@
 
 session_start();
 
-if(!isset($_SESSION['admin_logado'])){
+if (!isset($_SESSION['admin_logado'])) {
     header("location:login.php");
     exit();
 }
@@ -11,6 +11,7 @@ if(!isset($_SESSION['admin_logado'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,18 +23,19 @@ if(!isset($_SESSION['admin_logado'])){
     <link href="../visual/painel_admin/painel_adm.css" rel="stylesheet">
 
 </head>
+
 <body>
-
     
-    <div  id="background">
+    <div id="background">
         <img src="../visual/charlie-logo.png" alt="">
-
-        <h2>Bem-vindo Administrador!</h2>
-        <h3 style="margin-top: 10px; margin-bottom: 20px; " >Oque gostaria de fazer hoje?</h3>
-
+        <!-- <div class="vertical"></div>   -->
+        <div>
+            <h2>Bem-vindo Administrador!</h2>
+            <p style="text-align: center; margin-bottom: 50px;" >O que gostaria de fazer hoje?</p>
+        </div>
         <div id="buttons">
             <a href="admin_funcoes.php">
-                <button id="button_insert_prod"  class="btn btn-dark btn2">ADMINISTRADORES</button>
+                <button id="button_insert_prod" class="btn btn-dark btn2">ADMINISTRADORES</button>
             </a>
 
             <a href="produtos_funcoes.php">
@@ -43,7 +45,7 @@ if(!isset($_SESSION['admin_logado'])){
             <a href="categoria_funcoes.php">
                 <button id="button_list_prod" class="btn btn-dark btn2">CATEGORIAS</button>
             </a>
-        
+
             <a href="login.php">
                 <button id="button_exit" class="btn btn-dark btn3">SAIR</button>
             </a>
@@ -54,4 +56,5 @@ if(!isset($_SESSION['admin_logado'])){
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </html>

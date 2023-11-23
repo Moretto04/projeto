@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $estoque = $_POST['estoque'];
 
     try {
-        $stmt_update_produto = $pdo->prepare("UPDATE PRODUTO SET PRODUTO_NOME = :nome, PRODUTO_DESC = :descricao, PRODUTO_PRECO = :preco, CATEGORIA_ID = :categoria_id, PRODUTO_ATIVO = :ativo, PRODUTO_DESCONTO = :desconto, PRODUTO_QTD = :estoque WHERE PRODUTO_ID = :produto_id");
+        $stmt_update_produto = $pdo->prepare("UPDATE PRODUTO SET PRODUTO_NOME = :nome, PRODUTO_DESC = :descricao, PRODUTO_PRECO = :preco, CATEGORIA_ID = :categoria_id, PRODUTO_ATIVO = :ativo, PRODUTO_DESCONTO = :desconto WHERE PRODUTO_ID = :produto_id");
         $stmt_update_produto->bindParam(':nome', $nome);
         $stmt_update_produto->bindParam(':descricao', $descricao);
         $stmt_update_produto->bindParam(':preco', $preco);
@@ -54,8 +54,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_update_produto->bindParam(':ativo', $ativo);
         $stmt_update_produto->bindParam(':desconto', $desconto);
         $stmt_update_produto->bindParam(':produto_id', $produto_id);
-        $stmt_update_produto->bindParam(':estoque', $estoque);
         $stmt_update_produto->execute();
+
+
+        //atualizando produto_estoque  
+        $stmt_update_estoque = $pdo->prepare("UPDATE PRODUTO_ESTOQUE SET PRODUTO_QTD = :estoque WHERE PRODUTO_ID = :produto_id");
+        $stmt_update_estoque->bindParam(':estoque', $estoque);
+        $stmt_update_estoque->bindParam(':produto_id', $produto_id);
+        $stmt_update_estoque->execute();
 
         echo "<script>alert('Produto atualizado com sucesso!'); window.location.href = 'listar_produtos.php';</script>";
     } catch (PDOException $e) {
@@ -73,8 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Editar Produto</title>
 
     <!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- css da pagina -->
     <link rel="stylesheet" href="../visual/editar_produto/editar_produto.css">
@@ -117,9 +122,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="categoria_id">Categoria</label>
                     <select name="categoria_id" id="categoria_id" class="form-select" required>
                         <?php
-                        foreach ($categorias as $categoria):
+                        foreach ($categorias as $categoria) :
                             $selected = $produto['CATEGORIA_ID'] == $categoria['CATEGORIA_ID'] ? 'selected' : '';
-                            ?>
+                        ?>
                             <option value="<?= $categoria['CATEGORIA_ID'] ?>" <?= $selected ?>>
                                 <?= $categoria['CATEGORIA_NOME'] ?>
                             </option>
@@ -131,8 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="form-row">
                 <div class="input-data textarea">
-                    <textarea name="descricao" id="descricao" rows="8" cols="80"
-                        required><?= $produto['PRODUTO_DESC'] ?></textarea>
+                    <textarea name="descricao" id="descricao" rows="8" cols="80" required><?= $produto['PRODUTO_DESC'] ?></textarea>
                     <br />
                     <div class="underline"></div>
                     <label for="">Descricao</label>
@@ -163,23 +167,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="form-row submit-btn">
                 <div class="input-data">
-                    <button style="margin-top: 5px;" class="btn btn-outline-success" type="submit">Atualizar
-                        Produto</button>
+                    <button style="margin-top: 5px;" class="btn btn-outline-success" type="submit">Atualizar Produto</button>
                 </div>
             </div>
         </form>
     </div>
 
     <div id="voltar">
-        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left"
-                style="color: #ff0000;"></i><a href="listar_produtos.php" style="text-decoration: none; color: white;">
+        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="listar_produtos.php" style="text-decoration: none; color: white;">
                 Voltar</a></button>
     </div>
 
     <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

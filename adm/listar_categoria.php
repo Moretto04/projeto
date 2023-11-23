@@ -38,10 +38,9 @@ try {
     <div id="logo">
         <a id="logo" href="categoria_funcoes.php"><img src="../visual/charlie-logo2.png" style="width: 40%;" alt=""></a>
     </div>
-    <div id="search-container">
+    <div id="search-container" >
         <input type="text" id="search-input" placeholder="Pesquisar...">
-        <button id="search-button" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass fa-xl"
-                style="color: #ff0000; "></i></button>
+        <button id="search-button" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass fa-xl" style="color: #ff0000; "></i></button>
     </div>
     <table id="categoria-table" class="table table-hover table-striped-columns">
         <thead>
@@ -72,17 +71,15 @@ try {
                 </td>
 
                 <td>
-                    <button type="button" id="editar" class="btn btn-success"><a
-                            href="editar_categoria.php?id=<?php echo $categoria['CATEGORIA_ID']; ?>">EDITAR</a></button>
-                    <button type="button" id="excluir" class="btn btn-danger"><a href="excluir_categoria.php?id=<?php echo $categoria['CATEGORIA_ID']; ?>">EXCLUIR</a></button>
+                    <button type="button" id="editar" class="btn btn-success" style="margin-left: 5x;" ><a href="editar_categoria.php?id=<?php echo $categoria['CATEGORIA_ID']; ?>">EDITAR</a></button>
+                    <button type="button" id="excluir" class="btn btn-danger" style="margin-left: 5px;" ><a href="excluir_categoria.php?id=<?php echo $categoria['CATEGORIA_ID']; ?>">EXCLUIR</a></button>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
 
     <div id="voltar">
-        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left"
-                style="color: #ff0000;"></i><a href="categoria_funcoes.php"> Voltar</a></button>
+        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="categoria_funcoes.php"> Voltar</a></button>
     </div>
 
 
