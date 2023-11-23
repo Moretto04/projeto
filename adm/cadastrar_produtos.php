@@ -94,8 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </script>
 
+    <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <!-- css da pagina -->
     <link rel="stylesheet" href="../visual/cadastrar_produtos/cadastrar_produto.css">
 </head>
 
