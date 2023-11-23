@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ativo = isset($_POST['ativo']) ? 1 : 0;
     $desconto = $_POST['desconto'];
     $imagens = $_POST['imagem_url'];
+    $quantidade = $_POST['quantidade'];
 
     // Inserindo produto no banco.
     try {
@@ -43,8 +44,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':desconto', $desconto, PDO::PARAM_STR);
         $stmt->execute();
 
+
+
+        //ESTOQUE
+        //$sql = "INSERT INTO PRODUTO_ESTOQUE (PRODUTO_QTD) VALUES (:quantidade) PRODUTO_ESTOQUE INNER JOIN PRODUTO ON PRODUTO_ESTOQUE.PRODUTO_ID = PRODUTO.PRODUTO_ID";
+        //$stmt = $pdo->prepare($sql);
+        //$stmt->bindParam(":quntidade", $quantidade, PDO::PARAM_INT);
+        // $stmt->execute();
+
+
         // Pegando o ID do produto inserido.
         $produto_id = $pdo->lastInsertId();
+
+
+        // Inserindo no estoque.
+        $sql_estoque = "INSERT INTO PRODUTO_ESTOQUE (PRODUTO_ID, PRODUTO_QTD) VALUES (:produto_id, :quantidade)";
+        $stmt_estoque = $pdo->prepare($sql_estoque);
+        $stmt_estoque->bindParam(':produto_id', $produto_id, PDO::PARAM_INT);
+        $stmt_estoque->bindParam(':quantidade', $quantidade, PDO::PARAM_INT);
+        $stmt_estoque->execute();
 
         // Inserindo imagens no banco.
         foreach ($imagens as $ordem => $url_imagem) {
@@ -95,7 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </script>
 
     <!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- css da pagina -->
     <link rel="stylesheet" href="../visual/cadastrar_produtos/cadastrar_produto.css">
@@ -117,6 +136,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="underline"></div>
                     <label for="preco">Preço</label>
                 </div>
+                <div class="input-data">
+                    <input type="number" name="quantidade" id="quantidade" step="1" required>
+                    <div class="underline"></div>
+                    <label for="quantidade">Quantidade em Estoque</label>
+                </div>
             </div>
 
 
@@ -131,8 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <select name="categoria_id" id="categoria_id" class="form-select" required>
                         <?php
                         // Loop para preencher o dropdown de categorias.
-                        foreach ($categorias as $categoria) :
-                        ?>
+                        foreach ($categorias as $categoria):
+                            ?>
 
 
                             <option value="<?= $categoria['CATEGORIA_ID'] ?>">
@@ -160,7 +184,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="text" name="imagem_url[]" required>
                     <div class="underline"></div>
                     <label for="imagem">Imagem URL</label>
-                    <button type="button" class="btn btn-outline-dark" style="margin-top: 20px;" onclick="adicionarImagem()">Adicionar mais imagens</button>
+                    <button type="button" class="btn btn-outline-dark" style="margin-top: 20px;"
+                        onclick="adicionarImagem()">Adicionar mais imagens</button>
                 </div>
                 <div id="ativo">
                     <label class="form-check-label" for="ativo">Ativo</label>
@@ -178,11 +203,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <div id="voltar">
-        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="produtos_funcoes.php" style="text-decoration: none; color: white;"> Voltar</a></button>
+        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left"
+                style="color: #ff0000;"></i><a href="produtos_funcoes.php" style="text-decoration: none; color: white;">
+                Voltar</a></button>
     </div>
 
     <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
