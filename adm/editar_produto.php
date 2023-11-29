@@ -34,7 +34,15 @@ $estoque = $stmt_estoque->fetchAll(PDO::FETCH_ASSOC);
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Atualizando as URLs das imagens. 
+     // Atualizando as URLs das imagens.
+     if (isset($_POST['editar_imagem_url'])) {
+        foreach ($_POST['editar_imagem_url'] as $imagem_id => $url_editada) {
+            $stmt_update = $pdo->prepare("UPDATE PRODUTO_IMAGEM SET IMAGEM_URL = :url WHERE IMAGEM_ID = :imagem_id");
+            $stmt_update->bindParam(':url', $url_editada, PDO::PARAM_STR);
+            $stmt_update->bindParam(':imagem_id', $imagem_id, PDO::PARAM_INT);
+            $stmt_update->execute();
+        }
+    }
 
     // Atualizando as informações do produto.
     $nome = $_POST['nome'];
@@ -174,8 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <div id="voltar">
-        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="listar_produtos.php" style="text-decoration: none; color: white;">
-                Voltar</a></button>
+        <button id="btn" type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left" style="color: #ff0000;"></i><a href="listar_produtos.php" style="text-decoration: none; color: white;"> Voltar</a></button>
     </div>
 
     <script src="https://kit.fontawesome.com/60bef82a49.js" crossorigin="anonymous"></script>

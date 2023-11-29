@@ -72,7 +72,7 @@ try {
 
                 <td>
                     <button type="button" id="editar" class="btn btn-success" style="margin-left: 5x;" ><a href="editar_categoria.php?id=<?php echo $categoria['CATEGORIA_ID']; ?>">EDITAR</a></button>
-                    <button type="button" id="excluir" class="btn btn-danger" style="margin-left: 5px;" ><a href="excluir_categoria.php?id=<?php echo $categoria['CATEGORIA_ID']; ?>">EXCLUIR</a></button>
+                    <button type="button" id="excluir" class="btn btn-danger" onclick="excluirCategoria(<?php echo $categoria['CATEGORIA_ID']; ?>)" style="margin-left: 5px;" >EXCLUIR</button>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -86,7 +86,7 @@ try {
     <!-- alert do botão de excluir -->
 
     <script>
-        function excluirAdmin() {
+        function excluirCategoria() {
             alert("Função desabilitada!");
             var btn = document.getElementById('excluir');
         }

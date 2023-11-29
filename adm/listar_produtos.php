@@ -38,7 +38,7 @@ try {
         <a id="logo" href="produtos_funcoes.php"><img src="../visual/charlie-logo2.png" style="width: 40%;" alt=""></a>
     </div>
     <div id="search-container">
-        <input type="text" id="search-input" placeholder="Pesquisar...">
+        <input type="text" id="search-input" placeholder="  Pesquisar...">
         <button id="search-button" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass fa-xl" style="color: #ff0000; "></i></button>
     </div>
     <table id="produtos-table" class="table table-hover table-striped-columns">
@@ -95,7 +95,7 @@ try {
 
                 <td>
                     <button type="button" id="editar" class="btn btn-success" style="margin-left: 5px;"><a href="editar_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EDITAR</a></button>
-                    <button type="button" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 10px; margin-left: 5px;"><a href="excluir_produto.php?id=<?php echo $produto['PRODUTO_ID']; ?>">EXCLUIR</a></button>
+                    <button type="button" id="excluir" class="btn btn-danger" onclick="excluirProduto(<?php echo $produto['PRODUTO_ID']; ?>)" style="margin-top: 10px; margin-bottom: 10px; margin-left: 5px;">EXCLUIR</button>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -110,7 +110,7 @@ try {
     <!-- alert do botão de excluir -->
 
     <script>
-        function excluirAdmin() {
+        function excluirProduto() {
             alert("Função desabilitada!");
             var btn = document.getElementById('excluir');
         }
