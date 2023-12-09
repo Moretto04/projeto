@@ -34,8 +34,8 @@ $estoque = $stmt_estoque->fetchAll(PDO::FETCH_ASSOC);
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-     // Atualizando as URLs das imagens.
-     if (isset($_POST['editar_imagem_url'])) {
+    // Atualizando as URLs das imagens.
+    if (isset($_POST['editar_imagem_url'])) {
         foreach ($_POST['editar_imagem_url'] as $imagem_id => $url_editada) {
             $stmt_update = $pdo->prepare("UPDATE PRODUTO_IMAGEM SET IMAGEM_URL = :url WHERE IMAGEM_ID = :imagem_id");
             $stmt_update->bindParam(':url', $url_editada, PDO::PARAM_STR);
@@ -130,13 +130,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="categoria_id">Categoria</label>
                     <select name="categoria_id" id="categoria_id" class="form-select" required>
                         <?php
-                        foreach ($categorias as $categoria) :
-                            $selected = $produto['CATEGORIA_ID'] == $categoria['CATEGORIA_ID'] ? 'selected' : '';
+                        foreach ($categorias as $categoria) {
+                            if ($categoria['CATEGORIA_ATIVO']) { // Verifica se a categoria está ativa
+                                $selected = $produto['CATEGORIA_ID'] == $categoria['CATEGORIA_ID'] ? 'selected' : '';
                         ?>
-                            <option value="<?= $categoria['CATEGORIA_ID'] ?>" <?= $selected ?>>
-                                <?= $categoria['CATEGORIA_NOME'] ?>
-                            </option>
-                        <?php endforeach; ?>
+                                <option value="<?= $categoria['CATEGORIA_ID'] ?>" <?= $selected ?>>
+                                    <?= $categoria['CATEGORIA_NOME'] ?>
+                                </option>
+                        <?php
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -157,6 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-row">
                 <div id="url_imagens">
                     <?php
+                    $firstImage = true;
                     foreach ($imagens_existentes as $imagem) {
                         echo '<div class="input-data" style="padding-right: 30px;">';
                         echo '<input type="text" name="editar_imagem_url[' . $imagem['IMAGEM_ID'] . ']" value="' . $imagem['IMAGEM_URL'] . '">';
@@ -164,9 +169,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo '<label for="imagem">Imagem URL</label>';
                         echo '</div>';
                         echo '<br>';
+
+                        // Verifica se é a primeira imagem e adiciona uma nova linha
+                        if ($firstImage) {
+                            echo '<div style="clear:both;"></div>';
+                            $firstImage = false;
+                        }
                     }
                     ?>
                 </div>
+
                 <div id="ativo">
                     <label class="form-check-label" for="ativo" style="margin-left: 18px;">Ativo</label>
                     <input type="checkbox" class="form-check-input" name="ativo" id="ativo" value="1" checked>
